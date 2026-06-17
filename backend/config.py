@@ -6,7 +6,7 @@ load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
-# Models config - سهل تغيرهم
+# Models config
 MODELS = {
     "classifier": "openai/gpt-4o-mini",
     "order":      "anthropic/claude-sonnet-4-6",
