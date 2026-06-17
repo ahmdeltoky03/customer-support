@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>متجر كلود | خدمة العملاء</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #chat-widget { transition: all 0.3s ease; }
+    #chat-box { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-indigo-600">🛍️ متجر كلود</h1>
+    <div class="flex gap-4 text-sm text-gray-600">
+      <button onclick="showPage('products')" class="hover:text-indigo-600">المنتجات</button>
+      <button onclick="showPage('orders')"   class="hover:text-indigo-600">الطلبات</button>
+    </div>
+  </nav>
+
+  <!-- Pages -->
+  <div id="page-products" class="hidden p-6">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">المنتجات</h2>
+    <div id="products-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+  </div>
+
+  <div id="page-orders" class="hidden p-6">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">الطلبات</h2>
+    <div id="orders-list" class="flex flex-col gap-3"></div>
+  </div>
+
+  <!-- Floating Chat Button -->
+  <button onclick="toggleChat()"
+    class="fixed bottom-6 left-6 bg-indigo-600 text-white w-14 h-14 rounded-full shadow-lg text-2xl hover:bg-indigo-700 transition z-50">
+    💬
+  </button>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget"
+    class="fixed bottom-24 left-6 w-80 bg-white rounded-2xl shadow-2xl z-50 hidden flex-col overflow-hidden">
+
+    <!-- Header -->
+    <div class="bg-indigo-600 text-white px-4 py-3 flex justify-between items-center">
+      <div>
+        <p class="font-bold text-sm">🤖 مساعد المتجر</p>
+        <p class="text-xs opacity-75">كيف ممكن أساعدك؟</p>
+      </div>
+      <button onclick="toggleChat()" class="text-white opacity-75 hover:opacity-100 text-lg">✕</button>
+    </div>
+
+    <!-- Category Badge -->
+    <div id="category-badge" class="hidden px-4 pt-2">
+      <span id="category-text" class="text-xs bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded-full"></span>
+    </div>
+
+    <!-- Messages -->
+    <div id="chat-box" class="flex flex-col gap-3 p-4 h-72 overflow-y-auto">
+      <div class="self-start bg-gray-100 text-gray-800 rounded-2xl rounded-tl-sm px-4 py-2 text-sm">
+        أهلاً! 👋 أنا هنا أساعدك في أي استفسار عن المنتجات أو الطلبات.
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="p-3 border-t flex gap-2">
+      <input id="chat-input" type="text" placeholder="اكتب سؤالك..."
+        class="flex-1 border rounded-xl px-3 py-2 text-sm text-right focus:outline-none focus:ring-2 focus:ring-indigo-400"/>
+      <button onclick="sendMessage()"
+        class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm hover:bg-indigo-700">إرسال</button>
+    </div>
+  </div>
+
+  <script>
+    const API = "http://localhost:8000"
+
+    const STATUS_AR = {
+      delivered:  { label: "تم التوصيل",   color: "green"  },
+      shipping:   { label: "جاري الشحن",   color: "blue"   },
+      processing: { label: "قيد المعالجة", color: "yellow" },
+      cancelled:  { label: "ملغي",          color: "red"    },
+      returned:   { label: "مرتجع",         color: "purple" },
+    }
+
+    const CATEGORY_AR = {
+      order:   "🚚 أوردر",
+      product: "🛍️ منتج",
+      refund:  "↩️ مرتجع",
+      general: "💬 عام",
+    }
+
+    // ── Pages ──────────────────────────────────────────
+    function showPage(name) {
+      ["products","orders"].forEach(p => {
+        document.getElementById("page-"+p).classList.add("hidden")
+      })
+      document.getElementById("page-"+name).classList.remove("hidden")
+      if (name === "products") loadProducts()
+      if (name === "orders")   loadOrders()
+    }
+
+    // ── Chat Toggle ────────────────────────────────────
+    function toggleChat() {
+      const widget = document.getElementById("chat-widget")
+      widget.classList.toggle("hidden")
+      widget.classList.toggle("flex")
+      if (!widget.classList.contains("hidden")) {
+        document.getElementById("chat-input").focus()
+      }
+    }
+
+    // ── Products ───────────────────────────────────────
+    async function loadProducts() {
+      const res  = await fetch(API+"/products")
+      const data = await res.json()
+      const grid = document.getElementById("products-grid")
+      grid.innerHTML = data.map(p => `
+        <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-md transition">
+          <img src="${p.image}" alt="${p.name}"
+               class="w-full h-48 object-cover"
+               onerror="this.src='https://placehold.co/400x300?text=No+Image'"/>
+          <div class="p-3">
+            <p class="font-semibold text-gray-800 text-sm">${p.name}</p>
+            <p class="text-indigo-600 font-bold mt-1">${p.price} جنيه</p>
+            <p class="text-xs text-gray-400 mt-1">${p.sizes.join(" · ")}</p>
+            <span class="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full mt-2 inline-block">${p.category}</span>
+          </div>
+        </div>
+      `).join("")
+    }
+
+    // ── Orders ─────────────────────────────────────────
+    async function loadOrders() {
+      const [ordersRes, productsRes, customersRes] = await Promise.all([
+        fetch(API+"/orders"),
+        fetch(API+"/products"),
+        fetch(API+"/customers"),
+      ])
+      const orders    = await ordersRes.json()
+      const products  = await productsRes.json()
+      const customers = await customersRes.json()
+
+      const productMap  = Object.fromEntries(products.map(p  => [p.id, p]))
+      const customerMap = Object.fromEntries(customers.map(c => [c.id, c]))
+
+      const list = document.getElementById("orders-list")
+      list.innerHTML = orders.map(o => {
+        const product  = productMap[o.product_id]  || {}
+        const customer = customerMap[o.customer_id] || {}
+        const st       = STATUS_AR[o.status] || { label: o.status, color: "gray" }
+        return `
+          <div class="bg-white rounded-xl shadow p-4 flex items-center gap-4">
+            <img src="${product.image || ''}" alt="${product.name || ''}"
+                 class="w-16 h-16 object-cover rounded-lg"
+                 onerror="this.src='https://placehold.co/100?text=?'"/>
+            <div class="flex-1">
+              <p class="font-semibold text-gray-800">${o.id} — ${product.name || 'منتج'}</p>
+              <p class="text-sm text-gray-500">${customer.name || ''} | ${o.created_at}</p>
+              ${o.tracking_number ? `<p class="text-xs text-gray-400">تتبع: ${o.tracking_number}</p>` : ""}
+            </div>
+            <div class="text-left">
+              <p class="font-bold text-indigo-600">${o.total} جنيه</p>
+              <span class="text-xs bg-${st.color}-100 text-${st.color}-700 px-2 py-0.5 rounded-full">${st.label}</span>
+            </div>
+          </div>
+        `
+      }).join("")
+    }
+
+    // ── Chat ───────────────────────────────────────────
+    async function sendMessage() {
+      const input = document.getElementById("chat-input")
+      const msg   = input.value.trim()
+      if (!msg) return
+      input.value = ""
+
+      appendMessage("user", msg)
+      appendTyping()
+
+      const res  = await fetch(API+"/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
+      })
+      const data = await res.json()
+      removeTyping()
+      appendMessage("bot", data.response, data.category)
+    }
+
+    function appendMessage(role, text, category = "") {
+      const box = document.getElementById("chat-box")
+      const div = document.createElement("div")
+      div.className = role === "user"
+        ? "self-end bg-indigo-600 text-white rounded-2xl rounded-tr-sm px-4 py-2 max-w-xs text-sm"
+        : "self-start bg-gray-100 text-gray-800 rounded-2xl rounded-tl-sm px-4 py-2 max-w-xs text-sm"
+
+      if (role === "bot" && category) {
+        const badge = document.getElementById("category-badge")
+        const text_ = document.getElementById("category-text")
+        badge.classList.remove("hidden")
+        text_.innerText = CATEGORY_AR[category] || category
+      }
+
+      div.innerText = text
+      box.appendChild(div)
+      box.scrollTop = box.scrollHeight
+    }
+
+    function appendTyping() {
+      const box = document.getElementById("chat-box")
+      const div = document.createElement("div")
+      div.id = "typing"
+      div.className = "self-start bg-gray-100 text-gray-400 rounded-2xl px-4 py-2 text-sm"
+      div.innerText = "جاري الكتابة..."
+      box.appendChild(div)
+      box.scrollTop = box.scrollHeight
+    }
+
+    function removeTyping() {
+      document.getElementById("typing")?.remove()
+    }
+
+    document.getElementById("chat-input").addEventListener("keydown", e => {
+      if (e.key === "Enter") sendMessage()
+    })
+
+    // default page
+    showPage("products")
+  </script>
+</body>
+</html>
