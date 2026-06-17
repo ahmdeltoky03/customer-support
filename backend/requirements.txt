@@ -1,0 +1,12 @@
+langgraph
+langchain
+langchain-openai
+langchain-anthropic
+langchain-core
+langgraph-prebuilt
+fastapi
+uvicorn
+python-dotenv
+openai
+anthropic
+pydantic
