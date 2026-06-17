@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ORD-001",
+    "customer_id": "CUST-001",
+    "product_id": "PROD-006",
+    "status": "delivered",
+    "total": 399,
+    "created_at": "2024-06-01",
+    "tracking_number": "TRK123456"
+  },
+  {
+    "id": "ORD-002",
+    "customer_id": "CUST-001",
+    "product_id": "PROD-013",
+    "status": "shipping",
+    "total": 549,
+    "created_at": "2024-06-10",
+    "tracking_number": "TRK789012"
+  },
+  {
+    "id": "ORD-003",
+    "customer_id": "CUST-002",
+    "product_id": "PROD-010",
+    "status": "processing",
+    "total": 599,
+    "created_at": "2024-06-12",
+    "tracking_number": null
+  },
+  {
+    "id": "ORD-004",
+    "customer_id": "CUST-002",
+    "product_id": "PROD-001",
+    "status": "delivered",
+    "total": 149,
+    "created_at": "2024-06-05",
+    "tracking_number": "TRK345678"
+  },
+  {
+    "id": "ORD-005",
+    "customer_id": "CUST-003",
+    "product_id": "PROD-011",
+    "status": "cancelled",
+    "total": 899,
+    "created_at": "2024-06-08",
+    "tracking_number": null
+  },
+  {
+    "id": "ORD-006",
+    "customer_id": "CUST-003",
+    "product_id": "PROD-002",
+    "status": "returned",
+    "total": 189,
+    "created_at": "2024-06-03",
+    "tracking_number": "TRK901234"
+  },
+  {
+    "id": "ORD-007",
+    "customer_id": "CUST-001",
+    "product_id": "PROD-008",
+    "status": "shipping",
+    "total": 299,
+    "created_at": "2024-06-11",
+    "tracking_number": "TRK567890"
+  },
+  {
+    "id": "ORD-008",
+    "customer_id": "CUST-002",
+    "product_id": "PROD-014",
+    "status": "processing",
+    "total": 649,
+    "created_at": "2024-06-13",
+    "tracking_number": null
+  },
+  {
+    "id": "ORD-009",
+    "customer_id": "CUST-003",
+    "product_id": "PROD-005",
+    "status": "delivered",
+    "total": 229,
+    "created_at": "2024-06-02",
+    "tracking_number": "TRK112233"
+  },
+  {
+    "id": "ORD-010",
+    "customer_id": "CUST-001",
+    "product_id": "PROD-012",
+    "status": "delivered",
+    "total": 499,
+    "created_at": "2024-06-04",
+    "tracking_number": "TRK445566"
+  }
+]

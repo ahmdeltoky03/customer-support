@@ -1,0 +1,23 @@
+[
+  {
+    "id": "CUST-001",
+    "name": "أحمد محمد",
+    "email": "ahmed@example.com",
+    "phone": "01012345678",
+    "address": "15 شارع التحرير، القاهرة"
+  },
+  {
+    "id": "CUST-002",
+    "name": "سارة علي",
+    "email": "sara@example.com",
+    "phone": "01098765432",
+    "address": "22 شارع النيل، الجيزة"
+  },
+  {
+    "id": "CUST-003",
+    "name": "محمود حسن",
+    "email": "mahmoud@example.com",
+    "phone": "01156789012",
+    "address": "8 شارع الهرم، الجيزة"
+  }
+]

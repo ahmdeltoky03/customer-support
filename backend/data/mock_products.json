@@ -1,0 +1,167 @@
+[
+  {
+    "id": "PROD-001",
+    "name": "Classic White T-Shirt",
+    "category": "tshirts",
+    "price": 149,
+    "stock": 50,
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["white"],
+    "description": "تيشرت قطن 100% كلاسيك مريح للاستخدام اليومي",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400"
+  },
+  {
+    "id": "PROD-002",
+    "name": "Black Oversized T-Shirt",
+    "category": "tshirts",
+    "price": 189,
+    "stock": 30,
+    "sizes": ["M", "L", "XL", "XXL"],
+    "colors": ["black"],
+    "description": "تيشرت أوفرسايز أسود ستايل عصري",
+    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400"
+  },
+  {
+    "id": "PROD-003",
+    "name": "Striped Navy T-Shirt",
+    "category": "tshirts",
+    "price": 169,
+    "stock": 25,
+    "sizes": ["S", "M", "L"],
+    "colors": ["navy", "white"],
+    "description": "تيشرت مقلم كحلي وأبيض أنيق",
+    "image": "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=400"
+  },
+  {
+    "id": "PROD-004",
+    "name": "Graphic Print T-Shirt",
+    "category": "tshirts",
+    "price": 199,
+    "stock": 20,
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["white", "grey"],
+    "description": "تيشرت بطباعة جرافيك عصرية",
+    "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400"
+  },
+  {
+    "id": "PROD-005",
+    "name": "Basic Polo T-Shirt",
+    "category": "tshirts",
+    "price": 229,
+    "stock": 40,
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["white", "black", "navy"],
+    "description": "بولو تيشرت كلاسيك للمناسبات الرسمية والكاجوال",
+    "image": "https://images.unsplash.com/photo-1571455786673-9d9d6c194f90?w=400"
+  },
+  {
+    "id": "PROD-006",
+    "name": "Slim Fit Jeans",
+    "category": "pants",
+    "price": 399,
+    "stock": 35,
+    "sizes": ["28", "30", "32", "34", "36"],
+    "colors": ["blue", "black"],
+    "description": "جينز سليم فيت عالي الجودة مريح وأنيق",
+    "image": "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=400"
+  },
+  {
+    "id": "PROD-007",
+    "name": "Cargo Pants",
+    "category": "pants",
+    "price": 449,
+    "stock": 20,
+    "sizes": ["30", "32", "34", "36"],
+    "colors": ["khaki", "black", "olive"],
+    "description": "كارجو بانت عملي بجيوب كتير",
+    "image": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400"
+  },
+  {
+    "id": "PROD-008",
+    "name": "Jogger Sweatpants",
+    "category": "pants",
+    "price": 299,
+    "stock": 45,
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["grey", "black", "navy"],
+    "description": "جوجر سويت بانت مريح للرياضة والاسترخاء",
+    "image": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=400"
+  },
+  {
+    "id": "PROD-009",
+    "name": "Chino Pants",
+    "category": "pants",
+    "price": 379,
+    "stock": 30,
+    "sizes": ["30", "32", "34", "36"],
+    "colors": ["beige", "navy", "olive"],
+    "description": "شينو بانت كلاسيك مناسب لكل المناسبات",
+    "image": "https://images.unsplash.com/photo-1560243563-062bfc001d68?w=400"
+  },
+  {
+    "id": "PROD-010",
+    "name": "Denim Jacket",
+    "category": "jackets",
+    "price": 599,
+    "stock": 15,
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["blue", "black"],
+    "description": "جاكيت جينز كلاسيك لا يخرج من الموضة",
+    "image": "https://images.unsplash.com/photo-1601333144130-8cbb312386b6?w=400"
+  },
+  {
+    "id": "PROD-011",
+    "name": "Leather Jacket",
+    "category": "jackets",
+    "price": 899,
+    "stock": 10,
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["black", "brown"],
+    "description": "جاكيت جلد أصلي فاخر",
+    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400"
+  },
+  {
+    "id": "PROD-012",
+    "name": "Hoodie Jacket",
+    "category": "jackets",
+    "price": 499,
+    "stock": 25,
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "colors": ["grey", "black", "navy"],
+    "description": "هودي جاكيت مريح ودافي للشتا",
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=400"
+  },
+  {
+    "id": "PROD-013",
+    "name": "White Sneakers",
+    "category": "shoes",
+    "price": 549,
+    "stock": 20,
+    "sizes": ["39", "40", "41", "42", "43", "44"],
+    "colors": ["white"],
+    "description": "سنيكرز أبيض كلاسيك يتناسب مع كل لوك",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"
+  },
+  {
+    "id": "PROD-014",
+    "name": "Black Running Shoes",
+    "category": "shoes",
+    "price": 649,
+    "stock": 18,
+    "sizes": ["40", "41", "42", "43", "44", "45"],
+    "colors": ["black", "grey"],
+    "description": "جزمة رياضية للجري والتمارين عالية الأداء",
+    "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400"
+  },
+  {
+    "id": "PROD-015",
+    "name": "Canvas Slip-On",
+    "category": "shoes",
+    "price": 349,
+    "stock": 30,
+    "sizes": ["39", "40", "41", "42", "43"],
+    "colors": ["white", "black", "navy"],
+    "description": "كانفاس سليب أون خفيف ومريح للاستخدام اليومي",
+    "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=400"
+  }
+]
